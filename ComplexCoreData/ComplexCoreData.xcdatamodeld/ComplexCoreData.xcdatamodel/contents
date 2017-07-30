@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13196.5" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Cart" representedClassName="Cart" syncable="YES" codeGenerationType="class">
+        <attribute name="cartId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cartName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="inventoryItems" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="InventoryItem" inverseName="inv_inventoryItems" inverseEntity="InventoryItem" syncable="YES"/>
+    </entity>
+    <entity name="Category" representedClassName="Category" syncable="YES" codeGenerationType="class">
+        <attribute name="categoryId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="categoryName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="inv_inventoryCategories" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="InventoryItem" inverseName="categories" inverseEntity="InventoryItem" syncable="YES"/>
+        <relationship name="products" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Product" inverseName="inv_product_categories" inverseEntity="Product" syncable="YES"/>
+    </entity>
+    <entity name="InventoryItem" representedClassName="InventoryItem" syncable="YES" codeGenerationType="class">
+        <attribute name="inventoryId" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="categories" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Category" inverseName="inv_inventoryCategories" inverseEntity="Category" syncable="YES"/>
+        <relationship name="inv_inventoryItems" optional="YES" maxCount="1" deletionRule="Nullify" ordered="YES" destinationEntity="Cart" inverseName="inventoryItems" inverseEntity="Cart" syncable="YES"/>
+    </entity>
+    <entity name="Product" representedClassName="Product" syncable="YES" codeGenerationType="class">
+        <attribute name="productId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="productName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="quantity" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="inv_product_categories" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="products" inverseEntity="Category" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Cart" positionX="-18" positionY="72" width="128" height="90"/>
+        <element name="Category" positionX="-54" positionY="-9" width="128" height="105"/>
+        <element name="InventoryItem" positionX="0" positionY="81" width="128" height="90"/>
+        <element name="Product" positionX="-36" positionY="27" width="128" height="105"/>
+    </elements>
+</model>
