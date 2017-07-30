@@ -142,6 +142,24 @@ private func destroyPersistentStore(at storeURL: URL) throws {
   try psc.destroyPersistentStore(at: storeURL, ofType: NSSQLiteStoreType, options: nil)
 }
 ```
+# 5. JSON file decoding
+I have added a JSON file (Data.json) to inject data into the CoreData. For decoding the value, I have also written one singleton class called JSONHandler which decodes all the values from the JSON file. You just have to call the method like this
+
+```
+fileprivate func readJSON() {
+  let responseTupple =  JSONHandler.readJSON(from: "Data", with: "json")
+  if let error = responseTupple.1 {
+    showAlert(with: "Error", message: error)
+    return
+  }
+  if let dict = responseTupple.0 as? NSDictionary {
+    print(dict)
+
+    // Extract Dictionary
+    extract(responseDict: dict)
+  }
+}
+
 As you can see, you can easily understand whole theory of CoreData and can get started using this simple class in your project.
 
 Cheers!!!
